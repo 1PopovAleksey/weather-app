@@ -1,5 +1,55 @@
 import { FC } from "react";
 
+const data = {
+  coord: {
+    lon: 10.99,
+    lat: 44.34,
+  },
+  weather: [
+    {
+      id: 501,
+      main: "Rain",
+      description: "moderate rain",
+      icon: "10d",
+    },
+  ],
+  base: "stations",
+  main: {
+    temp: 298.48,
+    feels_like: 298.74,
+    temp_min: 297.56,
+    temp_max: 300.05,
+    pressure: 1015,
+    humidity: 64,
+    sea_level: 1015,
+    grnd_level: 933,
+  },
+  visibility: 10000,
+  wind: {
+    speed: 0.62,
+    deg: 349,
+    gust: 1.18,
+  },
+  rain: {
+    "1h": 3.16,
+  },
+  clouds: {
+    all: 100,
+  },
+  dt: 1661870592,
+  sys: {
+    type: 2,
+    id: 2075663,
+    country: "IT",
+    sunrise: 1661834187,
+    sunset: 1661882248,
+  },
+  timezone: 7200,
+  id: 3163858,
+  name: "Zocca",
+  cod: 200,
+};
+
 const Home: FC = () => {
   return (
     <>
@@ -21,25 +71,30 @@ const Home: FC = () => {
               <div className="mb-2">
                 <p className="mb-1 text-xl text-neutral">Jul 2, 10:30am</p>
                 <h2 className="text-neutral-dark mb-3 text-2xl font-bold">
-                  Novosibirsk, RU
+                  {data.name}, {data.sys.country}
                 </h2>
-                <h1 className="text-7xl font-light text-neutral">20°C</h1>
+                <h1 className="text-7xl font-light text-neutral">
+                  {data.main.temp}
+                </h1>
               </div>
               <div>
                 <div className="mb-2 flex flex-wrap gap-2">
                   <p className="w-max rounded bg-neutral px-2 py-1 text-lg font-medium text-base-100">
-                    Cloudy
+                    {data.weather[0].main}
                   </p>
                   <p className="w-max rounded bg-neutral px-2 py-1 text-lg font-medium text-base-100">
                     Rain
                   </p>
                 </div>
                 <p className="text-neutral-dark mb-2 text-lg font-medium">
-                  Feels like 19°C. Clear sky. Light breeze
+                  Feels like {data.main.feels_like}.{" "}
+                  {data.weather[0].description}
                 </p>
                 <ul className="flex w-[17rem] flex-wrap gap-x-2 border-l-2 border-neutral px-3">
                   <li className="text-base text-neutral">2.0m/s SE</li>
-                  <li className="text-base text-neutral">1015hPa</li>
+                  <li className="text-base text-neutral">
+                    {data.main.pressure}hPa
+                  </li>
                   <li className="text-base text-neutral">Humidity: 60%</li>
                   <li className="text-base text-neutral">UV: 4</li>
                   <li className="text-base text-neutral">Dew point: 12°C</li>
@@ -48,7 +103,7 @@ const Home: FC = () => {
               </div>
             </div>
             <div className="h-80 flex-1 rounded bg-neutral p-5">
-              <p className="text-3xl font-bold text-base-100">Карта</p>
+              <p className="text-3xl font-bold text-base-100">Map</p>
             </div>
           </div>
         </div>
